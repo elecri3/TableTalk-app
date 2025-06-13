@@ -2,6 +2,20 @@ import React, { useState } from 'react';
 import { FaBell, FaKey, FaSignOutAlt, FaTrash } from 'react-icons/fa';
 import '../../styles/ProfileSettings.css';
 
+const ProfileSettings = ({ user = {}, onUpdateSettings }) => {
+  // Se 'user' non viene passato, sarà un oggetto vuoto {} invece di undefined.
+  // In questo modo, user.settings darà undefined (e non un crash) e l' || {} lo gestirà.
+  const [settings, setSettings] = useState(user.settings || {
+    notifications: { email: true, push: true },
+    privacy: { showAge: true, showEmail: false },
+    language: 'it'
+  });
+  
+  if (!user) {
+    // Per sicurezza, se non ci sono dati utente, non mostrare nulla.
+    return null;
+  }
+  
 const ProfileSettings = ({ profileData, onUpdate }) => {
   const [notificationSettings, setNotificationSettings] = useState({
     emailNotifications: profileData.settings?.emailNotifications ?? true,

@@ -1,44 +1,220 @@
+/* ========================================
+   PROFILE HEADER STYLES - TableTalk App
+   ======================================== */
+
 .profile-header {
-  background: linear-gradient(to right, #f97316, #ef4444);
-  padding: 2rem;
-  color: white;
-  border-radius: 0.5rem;
-  margin-bottom: 2rem;
+  background: var(--background-primary);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-xl);
+  box-shadow: var(--box-shadow-md);
 }
 
 .profile-header-content {
   display: flex;
-  align-items: center;
-  gap: 2rem;
+  gap: var(--spacing-xl);
+  align-items: flex-start;
+}
+
+/* Sezione immagine profilo */
+.profile-image-section {
+  flex-shrink: 0;
+  width: 200px;
 }
 
 .profile-image {
-  width: 120px;
-  height: 120px;
+  width: 100%;
+  height: 200px;
   border-radius: 50%;
   object-fit: cover;
-  border: 4px solid white;
+  border: 4px solid var(--background-primary);
+  box-shadow: var(--box-shadow-sm);
 }
 
+.profile-image-placeholder {
+  width: 100%;
+  height: 200px;
+  border-radius: 50%;
+  background: var(--background-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
+  color: var(--text-secondary);
+  border: 4px solid var(--background-primary);
+  box-shadow: var(--box-shadow-sm);
+}
+
+/* Sezione informazioni */
 .profile-info {
-  flex: 1;
-}
-
-.profile-name {
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin-bottom: 0.5rem;
+  flex-grow: 1;
 }
 
 .profile-details {
   display: flex;
-  gap: 1rem;
-  margin-top: 1rem;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.profile-name {
+  font-size: var(--font-size-xxl);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.profile-bio {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin: var(--spacing-sm) 0;
 }
 
 .profile-detail {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  font-size: 0.875rem;
+  gap: var(--spacing-sm);
+  color: var(--text-secondary);
+}
+
+.profile-detail svg {
+  color: var(--primary-color);
+}
+
+/* Form di modifica */
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.form-group label {
+  font-weight: var(--font-weight-medium);
+  color: var(--text-primary);
+}
+
+.form-input,
+.form-textarea {
+  padding: var(--spacing-sm);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-md);
+  font-size: var(--font-size-md);
+  transition: all var(--transition-normal);
+}
+
+.form-input:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(var(--primary-color-rgb), 0.1);
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* Pulsanti */
+.form-actions {
+  display: flex;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-md);
+}
+
+.btn-primary,
+.btn-secondary,
+.edit-button {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--border-radius-md);
+  font-weight: var(--font-weight-medium);
+  transition: all var(--transition-normal);
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: var(--primary-color);
+  color: white;
+  border: none;
+}
+
+.btn-primary:hover {
+  background: var(--primary-dark);
+}
+
+.btn-secondary {
+  background: var(--background-secondary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+}
+
+.btn-secondary:hover {
+  background: var(--background-hover);
+}
+
+.edit-button {
+  background: none;
+  color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+  margin-top: var(--spacing-md);
+}
+
+.edit-button:hover {
+  background: var(--primary-color);
+  color: white;
+}
+
+/* Messaggi di errore */
+.error-message {
+  margin-top: var(--spacing-md);
+  padding: var(--spacing-sm);
+  background: var(--error-light);
+  color: var(--error);
+  border-radius: var(--border-radius-md);
+  font-size: var(--font-size-sm);
+}
+
+/* Responsive Design */
+@media (max-width: var(--breakpoint-md)) {
+  .profile-header-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .profile-image-section {
+    width: 150px;
+  }
+
+  .profile-image,
+  .profile-image-placeholder {
+    width: 150px;
+    height: 150px;
+  }
+
+  .profile-detail {
+    justify-content: center;
+  }
+
+  .form-actions {
+    justify-content: center;
+  }
+}
+
+/* Accessibilità */
+@media (prefers-reduced-motion: reduce) {
+  .profile-image,
+  .form-input,
+  .form-textarea,
+  .btn-primary,
+  .btn-secondary,
+  .edit-button {
+    transition: none;
+  }
 } 

@@ -4,6 +4,8 @@ import { FaCalendarAlt, FaUsers, FaUtensils } from 'react-icons/fa';
 import '../../styles/MealHistory.css';
 
 const MealHistory = ({ createdMeals = [], participatedMeals = [] }) => {
+  const hasNoMeals = !createdMeals?.length && !participatedMeals?.length;
+
   // Formatta la data in un formato leggibile
   const formatDate = (dateString) => {
     const options = { 

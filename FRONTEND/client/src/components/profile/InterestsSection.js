@@ -1,66 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FaEdit, FaSave, FaTimes, FaPlus, FaTimes as FaRemove } from 'react-icons/fa';
+import { availableLanguages, availableCuisines, suggestedInterests } from '../../constants/profileConstants';
 import '../../styles/InterestsSection.css';
 
-const InterestsSection = ({ interests = [], languages = [], onUpdate }) => {
+const InterestsSection = ({ interests = [], languages = [], preferredCuisine: initialCuisine = '', onUpdate }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [interestsList, setInterestsList] = useState(interests);
   const [languagesList, setLanguagesList] = useState(languages);
   const [newInterest, setNewInterest] = useState('');
   const [newLanguage, setNewLanguage] = useState('');
-  const [preferredCuisine, setPreferredCuisine] = useState('');
+  const [preferredCuisine, setPreferredCuisine] = useState(initialCuisine);
 
-  // Elenco delle lingue disponibili
-  const availableLanguages = [
-    { code: 'it', name: 'Italiano' },
-    { code: 'en', name: 'Inglese' },
-    { code: 'fr', name: 'Francese' },
-    { code: 'es', name: 'Spagnolo' },
-    { code: 'de', name: 'Tedesco' },
-    { code: 'pt', name: 'Portoghese' },
-    { code: 'ru', name: 'Russo' },
-    { code: 'zh', name: 'Cinese' },
-    { code: 'ja', name: 'Giapponese' },
-    { code: 'ar', name: 'Arabo' }
-  ];
-
-  // Elenco delle cucine preferite
-  const availableCuisines = [
-    'Italiana',
-    'Giapponese',
-    'Cinese',
-    'Indiana',
-    'Messicana',
-    'Mediterranea',
-    'Vegana',
-    'Vegetariana',
-    'Fast Food',
-    'Fusion'
-  ];
-
-  // Elenco degli interessi suggeriti
-  const suggestedInterests = [
-    'Cucina Italiana',
-    'Cucina Giapponese',
-    'Cucina Cinese',
-    'Cucina Indiana',
-    'Cucina Messicana',
-    'Cucina Mediterranea',
-    'Cucina Vegana',
-    'Cucina Vegetariana',
-    'Cucina Fusion',
-    'Cucina Molecolare',
-    'Cucina Tradizionale',
-    'Cucina Contemporanea',
-    'Cucina Regionale',
-    'Cucina Internazionale',
-    'Cucina Gourmet',
-    'Cucina Street Food',
-    'Cucina Fusion',
-    'Cucina Sostenibile',
-    'Cucina Biologica',
-    'Cucina Slow Food'
-  ];
+  useEffect(() => {
+    setInterestsList(interests);
+    setLanguagesList(languages);
+    setPreferredCuisine(initialCuisine); 
+  }, [interests, languages, initialCuisine]);
 
   const handleAddInterest = () => {
     if (newInterest.trim() && !interestsList.includes(newInterest.trim())) {

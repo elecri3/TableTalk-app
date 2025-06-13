@@ -3,6 +3,7 @@ import { FaCamera } from 'react-icons/fa';
 import '../../styles/ProfileHeader.css';
 import { toast } from 'react-toastify';
 import { authService } from '../../services/authService';
+import ProfileSettings from './ProfileSettings';
 
 const ProfileHeader = ({ profileImage, nickname, onUpdateImage }) => {
   const [isUploading, setIsUploading] = useState(false);
@@ -32,14 +33,17 @@ const ProfileHeader = ({ profileImage, nickname, onUpdateImage }) => {
       formData.append('profileImage', file);
       
       // Qui chiamiamo il metodo per aggiornare l'immagine
-      await onUpdateImage({ profileImage: formData });
-      
+      await onUpdateImage(formData);
+
       toast.success('Immagine profilo aggiornata!');
-      setIsUploading(false);
+
     } catch (error) {
       console.error('Errore durante il caricamento dell\'immagine:', error);
-      setIsUploading(false);
+
       toast.error('Errore durante il caricamento dell\'immagine. Riprova più tardi.');
+
+    } finally {
+      setIsUploading(false);
     }
   };
 
